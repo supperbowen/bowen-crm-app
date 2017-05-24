@@ -1,0 +1,3 @@
+function httpException(exception, hook) {
+
+}
