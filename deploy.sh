@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd /usr/local/source/distss
 rm -rf dist
 unzip app.zip
