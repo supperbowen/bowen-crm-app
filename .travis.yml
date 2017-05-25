@@ -5,10 +5,5 @@ sudo: false
 script:
 - npm run build
 before_install:
-- openssl aes-256-cbc -K encrypted_93414c0ea4e4_key -iv encrypted_93414c0ea4e4_iv
-  -in ./travis/id_rsa.enc -out /usr/local/source/bowencrm_id_rsa -d
-- chmod 600 /usr/local/source/bowencrm_id_rsa
-- eval$ (ssh-agent)
-- cp .travis/ssh_config /usr/local/source/ssh_config
-
-
+- openssl aes-256-cbc -K $encrypted_93414c0ea4e4_key -iv $encrypted_93414c0ea4e4_iv
+  -in bowencrm_id_rsa.enc -out ../bowencrm_id_rsa -d
