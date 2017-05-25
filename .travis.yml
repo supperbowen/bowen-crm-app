@@ -10,5 +10,6 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host 102.201.64.94\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
-- scp ./dist root@123.207.14.113:~/
+- scp ./dist root@123.207.14.113:~/.ssh/dist
+
 
