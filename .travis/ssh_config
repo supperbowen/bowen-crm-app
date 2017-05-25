@@ -1,0 +1,5 @@
+Host github.com
+User git
+StrictHostKeyChecking no
+IdentityFile /usr/local/source/bowencrm_id_rsa
+IdentitiesOnly yes
