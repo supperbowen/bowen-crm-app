@@ -6,7 +6,8 @@ script:
 - npm run build
 before_install:
 - openssl aes-256-cbc -K $encrypted_93414c0ea4e4_key -iv $encrypted_93414c0ea4e4_iv
-  -in bowencrm_id_rsa.enc -out ../bowencrm_id_rsa -d
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host 102.201.64.94\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
 - scp ./disp root@123.207.14.113:/usr/local/source/crm/app
-
