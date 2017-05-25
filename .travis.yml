@@ -15,7 +15,7 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host 123.207.14.113\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
-- zip app.zip ./dist
+- zip -r app.zip ./dist
 - sshpass -p $pwd scp -r ./app.zip $uid@123.207.14.113:/usr/local/source/distss/
 env:
   global:
