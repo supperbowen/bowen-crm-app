@@ -6,8 +6,8 @@ script:
 - npm run build
 before_install:
 - openssl aes-256-cbc -K $encrypted_93414c0ea4e4_key -iv $encrypted_93414c0ea4e4_iv
-  -in bowencrm_id_rsa.enc -out /user/local/source/bowencrm_id_rsa -d
-  -chmod 600 /user/local/source/bowencrm_id_rsa
+  -in bowencrm_id_rsa.enc -out ../bowencrm_id_rsa -d
+  -chmod 600 ../bowencrm_id_rsa
 after_success:
 - scp /home/travis/build/supperbowen/bowen-crm-app/dist/* root@123.207.14.113:/usr/local/source/crm/app
 
