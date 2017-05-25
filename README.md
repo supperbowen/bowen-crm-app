@@ -1,5 +1,5 @@
 # bowen-crm
-
+[![Build Status](https://travis-ci.org/supperbowen/bowen-crm-app.svg?branch=master)](https://travis-ci.org/supperbowen/bowen-crm-app)
 > A Vue.js project
 
 ## Build Setup
