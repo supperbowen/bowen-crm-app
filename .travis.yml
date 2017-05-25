@@ -10,5 +10,5 @@ before_install:
 after_success:
 - openssl aes-256-cbc -K $encrypted_93414c0ea4e4_key -iv $encrypted_93414c0ea4e4_iv
   -in bowencrm_id_rsa.enc -out ../bowencrm_id_rsa -d
-- sshpass -e scp ./dist root@123.207.14.113:/usr/local/source/crm/app
+- sshpass -e scp /home/travis/build/supperbowen/bowen-crm-app/dist root@123.207.14.113:/usr/local/source/crm/app
 
