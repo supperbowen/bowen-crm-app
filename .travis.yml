@@ -6,4 +6,4 @@ script:
 - npm run build
 before_install:
 - openssl aes-256-cbc -K $encrypted_8f92be6076c3_key -iv $encrypted_8f92be6076c3_iv
-  -in bowencrm_id_rsa.enc -out ../../bowencrm_id_rsa -d
+  -in id_rsa.enc -out id_rsa -d
