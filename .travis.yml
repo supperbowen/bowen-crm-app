@@ -1,5 +1,6 @@
 language: node_js
 addons:
+  ssh_known_hosts: 123.207.14.113
   apt:
     packages:
     - sshpass
