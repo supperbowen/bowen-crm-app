@@ -14,7 +14,7 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host 123.207.14.113\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
-- sshpass -p $pwd scp ./dist/* $uid@123.207.14.113:/usr/local/source/distss/
+- sshpass -p $pwd scp ./dist $uid@123.207.14.113:/usr/local/source/distss
 env:
   global:
   - secure: CuSQEn9f16fzmds50hfbAB5cB1EjS/KqOsRFDGjA6cK+uLEvpOjBcgVksk8a5FaizsHdH4UiVF2LYV/JD0O7hGMfmqWJGAwFk4x3yV8TUaEfSPNdl0gHwCaqDiL2c4uWUWJoFdJDVzRNelOMIMWAdE7hqjLpUVLGYPWvpytU4DuTRIevZ7we6wfJ19osmCaiXtzgsBqBmZHeDj9aGdj57paQZrvWTAFKOQhzoojSS0TcAf6Z69zhNfp8j3n2a0zPTIkdQBPCgPGcBbdx60mUnxO0uEK/o6+VnnR8abwZdhuAZv7qDYJiQhuhjDxXrOFPfxBubBMebS3tuKa1HmLTDPhWo3KSnFGUSCAgX3diODjjZ8BaraHraU6pXsGq9jWxmw4wjrr1Omj2OG3S9IYMCCQTsBt0zlR9mU8ueJI2hSWSbeZInbvclW3EI32dFo5njePyAqPQJiAXAHecMp9RhKGWBYfWnVitkGZI8hiccR00rn3mE03zxXoGAlA2uaZnHZhLjjfkGTRtLcqnpurtsAiEe3El6RSbI3OKoYZQSIpAhNqPCl023eisU2Ag/+jegVrFO2u3gyOyq6EmuCkAWYc6WNFCVVg5W3JIWuDPs9ujjzKvM4TIqpm2KG8nLGm+X4xgrOWabYN3zfVQ9/yJsadQCpNuaAfUQlabOgRpwdg=
