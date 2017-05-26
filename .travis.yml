@@ -18,8 +18,8 @@ before_install:
 - echo -e "Host 123.207.14.113\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
 - zip -r app.zip ./dist
-- sshpass -p $pwd scp -r ./app.zip $uid@123.207.14.113:/usr/local/source/distss/
-- sshpass -p $pwd scp -r ./deploy.sh $uid@123.207.14.113:/usr/local/source/distss/
+- sshpass -p $pwd scp ./app.zip $uid@123.207.14.113:/usr/local/source/distss/
+- sshpass -p $pwd scp ./deploy.sh $uid@123.207.14.113:/usr/local/source/distss/
 - sshpass -p $pwd $uid@123.207.14.113 "sh /usr/local/source/distss/deploy.sh"
 env:
   global:
