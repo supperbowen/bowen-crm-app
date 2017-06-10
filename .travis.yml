@@ -7,16 +7,20 @@ addons:
 node_js:
 - stable
 sudo: false
-before_install:
-- chmod 600 ~/.ssh/id_rsa
-- echo -e "Host 102.201.64.94/n/tStrictHostKeyChecking no/n" >> ~/.ssh/config
 script:
 - npm run build
+after_success:
+- export SSHPASS=$pwd
+before_install:
+- openssl aes-256-cbc -K $encrypted_93414c0ea4e4_key -iv $encrypted_93414c0ea4e4_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host 123.207.14.113\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
 - zip -r app.zip ./dist
 - sshpass -p $pwd scp ./app.zip $uid@123.207.14.113:/usr/local/source/distss/
 - sshpass -p $pwd scp ./deploy.sh $uid@123.207.14.113:~/
-- ssh -p $pwd $uid@123.207.14.113 'sh /usr/local/source/distss/deploy.sh'
+- sshpass -p $pwd $uid@123.207.14.113 "sh ~\/deploy.sh"
 env:
   global:
   - secure: do0JplNeBZQIKk4uWZEqKsKGdO1hDnPkgKNBiZEZrBZIqJQoB89LzyuUT8Jd+Fm39aKoGz//d8lMmmBALmNMHPKcpiY4Y1Y/1YwmtwzqwbWUswXDXwJqyePVd9OxAGRb5irW20e+34WMXZukOPcDV3JmacEM0DQwp1NYyQUc15vxO44JUcU/R/mF1k0+QsI04a7Ydp875uHcgHzbANSgOOJbDeDZgyLnFqGftknwRrv6TeXcOmcIEOY1FrU/ia5uRrOlnHbTVt26T7UtzFbv1RZmlAqsSHTRIKiwohCXuOPUjJ4vDsAoEkVUQ9jb09przPXGCbphmPbhn0Wac3g5F+DhH5NJQnGGzDj7Vzl9VQK7ILSeg9BvRSwYUgm5IFwmxfvbIc1zxC61wFPxJNiAghhVSflnnsyZc6V38QVyN3WnIG5Dz8WNzzhCizSFV0h2b25FRO3JEl729ZSgRooWdkfLsXvevOZ6MQxYHsmbJ7F+z0S6d+LHkApouLp7pcfLiOSsYpu/0N0ic8w9QC5+WhsAxbGm1DeKqAch/sezlqKnmR8t+7mPP4+lR2VOFENT8qjF9W0E1RIT4FQtVAf9qCFhSUnzrX097ulZJ+xi3Gwho9iWsCHHu7dNMyngyz6Pv0M+mKAIMIlaUcWz3vZJBU+WQ0iyfYjRzRNxj6d1ZKo=
