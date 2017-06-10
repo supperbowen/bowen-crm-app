@@ -17,8 +17,7 @@ before_install:
 after_success:
 - export SSHPASS=$pwd
 - zip -r app.zip ./dist
-- sshpass -e ssh travis@102.201.64.94 'rm -rf /usr/local/source/distss/deploy.sh' 
-- sshpass -e ssh travis@102.201.64.94 'rm -rf /usr/local/source/distss/app.zip' 
+- sshpass -e ssh travis@102.201.64.94 'rm -rf /usr/local/source/distss/deploy.sh && rm -rf /usr/local/source/distss/app.zip && exit 0' 
 - sshpass -e scp ./app.zip travis@123.207.14.113:/usr/local/source/distss/
 - sshpass -e scp ./deploy.sh travis@123.207.14.113:/usr/local/source/distss/
 - sshpass -e ssh travis@102.201.64.94 'sh /usr/local/source/distss/deploy.sh' 
