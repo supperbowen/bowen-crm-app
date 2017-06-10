@@ -17,10 +17,10 @@ before_install:
 after_success:
 - export SSHPASS=$pwd
 - zip -r app.zip ./dist
-- sshpass -e ssh -l root@102.201.64.94 'rm -rf /usr/local/source/distss/deploy.sh && rm -rf /usr/local/source/distss/app.zip && exit 0' 
+- sshpass -e ssh -l travis@102.201.64.94 'rm -rf /usr/local/source/distss/deploy.sh && rm -rf /usr/local/source/distss/app.zip && exit 0' 
 - sshpass -e scp ./app.zip travis@123.207.14.113:/usr/local/source/distss/
 - sshpass -e scp ./deploy.sh travis@123.207.14.113:/usr/local/source/distss/
-- sshpass -e ssh -l root@102.201.64.94 'sh /usr/local/source/distss/deploy.sh' 
+- sshpass -e ssh -l travis@102.201.64.94 'sh /usr/local/source/distss/deploy.sh' 
 env:
   global:
   - secure: do0JplNeBZQIKk4uWZEqKsKGdO1hDnPkgKNBiZEZrBZIqJQoB89LzyuUT8Jd+Fm39aKoGz//d8lMmmBALmNMHPKcpiY4Y1Y/1YwmtwzqwbWUswXDXwJqyePVd9OxAGRb5irW20e+34WMXZukOPcDV3JmacEM0DQwp1NYyQUc15vxO44JUcU/R/mF1k0+QsI04a7Ydp875uHcgHzbANSgOOJbDeDZgyLnFqGftknwRrv6TeXcOmcIEOY1FrU/ia5uRrOlnHbTVt26T7UtzFbv1RZmlAqsSHTRIKiwohCXuOPUjJ4vDsAoEkVUQ9jb09przPXGCbphmPbhn0Wac3g5F+DhH5NJQnGGzDj7Vzl9VQK7ILSeg9BvRSwYUgm5IFwmxfvbIc1zxC61wFPxJNiAghhVSflnnsyZc6V38QVyN3WnIG5Dz8WNzzhCizSFV0h2b25FRO3JEl729ZSgRooWdkfLsXvevOZ6MQxYHsmbJ7F+z0S6d+LHkApouLp7pcfLiOSsYpu/0N0ic8w9QC5+WhsAxbGm1DeKqAch/sezlqKnmR8t+7mPP4+lR2VOFENT8qjF9W0E1RIT4FQtVAf9qCFhSUnzrX097ulZJ+xi3Gwho9iWsCHHu7dNMyngyz6Pv0M+mKAIMIlaUcWz3vZJBU+WQ0iyfYjRzRNxj6d1ZKo=
