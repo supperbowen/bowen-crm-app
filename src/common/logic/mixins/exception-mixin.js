@@ -1,4 +1,6 @@
-import {hooks} from '../utils';
+import {
+  hooks
+} from '../utils';
 import * as _ from 'lodash';
 
 /**
@@ -8,9 +10,9 @@ import * as _ from 'lodash';
  * @param isHttpException 是否为系统异常
  */
 export function throwException(exception, hook) {
-	if (typeof console === 'function') {
-		console.error(exception, hook);
-	}
-	var args = _.toArray(arguments);
-	this.callHook(hooks.EXCEPTION, ...args);
+  if (typeof console === 'function') {
+    console.error(exception, hook);
+  }
+  var args = _.toArray(arguments);
+  this.callHook(hooks.EXCEPTION, ...args);
 }

@@ -1,5 +1,7 @@
-import {BaseLogic} from '/src/common/logic';
-/*import {hooks} from '/src/common/utils';*/
+import {
+  BaseLogic
+} from '/src/common/logic';
+
 
 export default class projectDataLogic extends BaseLogic {
   constructor() {

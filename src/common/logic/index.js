@@ -1,1 +1,1 @@
-export BaseLogic from './nsw-data-logic';
+export BaseLogic from './bas.data.logic';
