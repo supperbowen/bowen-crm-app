@@ -19,7 +19,7 @@ after_success:
 - zip -r app.zip ./dist
 - sshpass -e scp -P $port ./app.zip $host:/usr/local/source/distss/
 - sshpass -e scp -P $port ./deploy.sh $host:/usr/local/source/distss/
-- sshpass -e ssh -p $host $host 'cd /usr/local/source/distss && sh deploy.sh'
+- sshpass -e ssh -p $port $host $host 'cd /usr/local/source/distss && sh deploy.sh'
 env:
   global:
   - secure: JS7UryrcNBtHLzIi0djb0j0qvifSjXZ9uBG22aQolNYeKXNj+dnvwVAr/dWHpIfJaFG3dtFlu9Vju5i30wRr5x/5/GxoC6UdiqXim3NPPViMnVxFuLl3lfQRpD/VEX8M1aq2jlRqNHn/JnPEihAbEAAIltZFgPs+/Pk1FPAnBIVzcN+kM/xOB7C4q+P7HjOLg8ZrKs3g06HpjkCwf6AFcd0GOJ89Z7tUslNywSuETc/pthqow2L7byIN/9M6Z9soRqPFeGZw6JaTOIi2Sp1ExaeEq72Oz9bh+umHOKEJFT574NW72LsO/I9jCVpj+LIV0q6kqk+JKd33HnkO/H7VU0rzdMWFqJcVOe5vefYVN5pjAUN96i9CCEX9N64QOXZpW5vdmVsgb7NY/vdp/gj8AvMGWtcEA5os4/59sd2Qf4XeUhtZQWHYdPwKEw8uHxglwaDyE+F446tuHu+9LSqMP2jbWyf5/sW+/CKcsNDJHIYR3tB94LGFwgblNGfiF/ahSSkwhdO2fznA7xqFEH5wasvI3w/1tbynC3C8MyUZNuJCFVVs8m9yp3d4MBwv1vnJS1BFndZTqwB30vJOoWCXHZ03pHRkjGEUyTucZ2h24MpTB0ZCUOGlrNu1Xj93Wzvt+ygLGUbvbfplQgb/lnwYQ3Wb78icdsQAj92tvlq7aDg=
