@@ -4,12 +4,12 @@ import Desktop from '@/modules/desktop/Desktop';
 import About from '@/modules/home/About';
 import Hello from '@/components/Hello';
 import Customer from '@/modules/customer/customer';
-import User from '@/modules/user/user';
+import User from '@/modules/user/index/index.js';
 
-import UserList from '@/modules/user/views/list';
-import UserDetail from '@/modules/user/views/detail';
+import UserList from '@/modules/user/list/list.js';
+import UserDetail from '@/modules/user/detail/detail.js';
 
-import UserDetail2 from '@/modules/user/components/user.detail.component.js'
+//import UserDetail2 from '@/modules/user/components/user.detail.component.js'
 
 import Activity from '@/modules/activity/activity';
 import Quotation from '@/modules/quotation/quotation';
@@ -24,7 +24,7 @@ var activityRoute = { path: '/activity', name: 'crm.activity', component: Activi
 var quotationRoute = { path: '/quotation', name: 'crm.quotation', component: Quotation };
 var userRoute = { path: '/user', name: 'crm.user', component: User };
 userRoute.children = [
-    { path: '', name: 'crm.user.list', component: UserDetail2 },
+    { path: '', name: 'crm.user.list', component: UserList },
     { path: 'detail', name: 'crm.user.detail', component: UserDetail }
 ];
 
