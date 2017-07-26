@@ -1,1 +1,2 @@
-export BaseLogic from './bas.data.logic';
+import BaseLogic from './bas.data.logic';
+export default BaseLogic

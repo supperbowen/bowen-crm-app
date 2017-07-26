@@ -42,7 +42,7 @@ export function selectPrevious() {
   return false;
 }
 
-export function keyFilter(key) {
+export function dataKeyFilter(key) {
   var filter = {};
   key = _.isObject(key) ? key[this.primaryKey] : key;
   filter[this.primaryKey] = key;
@@ -55,8 +55,8 @@ export function removeItem(key) {
     return {};
   }
 
-  _.remove(this.dataList, this.keyFilter(key));
-  _.remove(this.selectedItems, this.keyFilter(key));
+  _.remove(this.dataList, this.dataKeyFilter(key));
+  _.remove(this.selectedItems, this.dataKeyFilter(key));
 }
 
 export function indexOfItem(item, dataList) {

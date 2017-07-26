@@ -1,5 +1,5 @@
-import style from './list.scss'
-import template from './list.html'
+require('@/modules/user/list/list.scss');
+const template = require('./list.html');
 
 export default {
 	template,

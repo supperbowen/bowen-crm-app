@@ -15,9 +15,9 @@ export default class Messenger {
 	}
 
 	emit() {
-		var arguments = arguments;
+		var args = arguments;
 		for (let handler of this.handlers) {
-			handler(...arguments);
+			handler(...args);
 		}
 	}
 

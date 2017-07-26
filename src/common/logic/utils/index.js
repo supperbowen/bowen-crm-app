@@ -1,8 +1,12 @@
-export keyFilter from './key-filter';
-export mixin from './mixin';
-export mkProp from './mk-prop';
-export tree from './tree';
-export ensure from './ensure';
-export hooks from './hooks';
-export omitAttr from './omit-attr';
-export isFunction from './is-function';
+import keyFilter from './key-filter';
+import mixin from './mixin';
+import mkProp from './mk-prop';
+import tree from './tree';
+import ensure from './ensure';
+import hooks from './hooks';
+import omitAttr from './omit-attr';
+import isFunction from './is-function';
+
+export {
+    keyFilter,mixin,mkProp,tree,ensure,hooks,omitAttr,isFunction
+}

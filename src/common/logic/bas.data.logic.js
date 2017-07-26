@@ -21,7 +21,7 @@ import * as exceptionMixin from './mixins/exception-mixin';
  * 我们可以继承这个基类，并通过钩子方法对我们的操作进行个性化。
  * 具体支持的钩子我们可以进一步查阅 ./utils/hooks 的定义。
  */
-export default class BaseLogic {
+class BaseLogic {
 	constructor(options) {
 		this.dataList = [];
 		this.$http = http;
@@ -59,10 +59,10 @@ export default class BaseLogic {
 	 * @param name 钩子名称
 	 */
 	callMixinHook(name, ...args) {
+		var that = this;
 		_.forEach(BaseLogic.mixins, (mixin) => {
 			var hookMethod = ensure.ensureMethod(mixin[name]);
-			hookMethod.bind(this);
-			hookMethod(...args);
+			hookMethod.call(that, ...args);
 		});
 	}
 
@@ -115,7 +115,7 @@ var isHookMethod = function(methodName) {
 
 //混合器注入方法
 BaseLogic.mixin = function(target) {
-	var methods = [];
+	var methods = {};
 	//把混合器中所有除子钩子方法外的方法混入到我们的BaseLogic中。
 	//所以混合器的this指针都会被指定到BaseLogic的对象中。
 	for (let prop in target) {
@@ -123,7 +123,7 @@ BaseLogic.mixin = function(target) {
 			!isHookMethod(prop) &&
 			isFunction(target[prop])
 		) {
-			methods.push(target[prop]);
+			methods[prop] =target[prop];
 		}
 	}
 	BaseLogic.mixins.push(target);
@@ -131,7 +131,10 @@ BaseLogic.mixin = function(target) {
 };
 
 //注入混合器
+BaseLogic.mixins = [];
 BaseLogic.mixin(itemMixin);
 BaseLogic.mixin(listMixin);
 BaseLogic.mixin(httpMixin);
 BaseLogic.mixin(exceptionMixin);
+
+export default  BaseLogic;

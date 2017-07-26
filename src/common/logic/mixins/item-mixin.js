@@ -9,7 +9,7 @@ import {
   method,
   mkProp
 } from '../utils';
-import globals from 'src/globals';
+// import globals from 'src/globals';
 
 
 //region hooks
@@ -128,33 +128,6 @@ export function saveCreate(item) {
   });
 }
 
-/**
- * 保存修改数据
- * @param item 保存对象，默认是currentItem
- */
-export function updateItem(item) {
-  item = item || this.currentItem;
-  var options = {
-    method: 'put',
-    url: this.createUri,
-    data: item
-  };
-  //调用保存前的钩子
-  this.callHook(hooks.BEFORE_SAVE, item);
-
-  this.http(options).then((res) => {
-    if (res.isSuccess) {
-      //调用保存成功后的钩子
-      this.callHook(hooks.AFTER_SAVED, res.data);
-    } else {
-      //保存异常
-      this.throwException(res.data, hooks.AFTER_SAVED);
-    }
-  }, (ex) => {
-    //http异常
-    this.throwException(ex, hooks.AFTER_SAVED, true);
-  })
-}
 
 /**
  * 保存修改数据
