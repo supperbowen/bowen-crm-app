@@ -6,7 +6,8 @@ export default {
 	template,
 	data: function() {
 		return {			
-			multipleSelection: []
+			multipleSelection: [],
+			list:[]
 		};
 	},
 	methods: {
@@ -23,7 +24,12 @@ export default {
 			this.multipleSelection = val;
 		}
 	},
-	mounted(){
-		service.loadData();
+	async mounted(){
+		let data = await service.loadData();
+		for(let item of data){
+			this.list.push(item);
+		}
+		// this.$set(this.list, data)
+		// console.log(data);
 	}	
 }

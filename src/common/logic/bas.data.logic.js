@@ -1,5 +1,6 @@
 import * as http from 'axios';
 import * as _ from 'lodash';
+import globals from '@/globals';
 
 import {
 	mixin,
@@ -35,17 +36,30 @@ class BaseLogic {
 			selectedItems: []
 		};
 		const events = {};
+		this.$$local = local;
 
 		//初始化插件
 		mkProp(this, 'currentItem', {
 			get: () => local.currentItem,
 			set: (value) => local.currentItem = value
 		});
-		mkProp(this, 'dataList', () => local.dataList);
-		mkProp(this, 'selectedItems', () => local.selectedItems);
+		mkProp(this, 'dataList', {
+			get: () => local.dataList,
+			set: x => local.dataList = x
+		});
+		mkProp(this, 'selectedItems', {
+			get: () => local.selectedItems,
+			set: x => local.selectedItems = x
+		});
 		mkProp(this, 'primaryKey', () => (options.primaryKey || globals.sysPrimaryKey));
-		mkProp(this, 'searchOptions', () => local.searchOptions);
-		mkProp(this, 'currentSearchOptions', () => local.currentSearchOptions);
+		mkProp(this, 'searchOptions',{
+			get: () => local.searchOptions,
+			set: x => local.searchOptions = x
+		});
+		mkProp(this, 'currentSearchOptions',{
+			get: () => local.currentSearchOptions,
+			set: x => local.currentSearchOptions = x
+		});
 		mkProp(this, 'uri', () => options.uri);
 		mkProp(this, 'moduleId', () => options.moduleId);
 		mkProp(this, 'events', () => events);
@@ -123,7 +137,7 @@ BaseLogic.mixin = function(target) {
 			!isHookMethod(prop) &&
 			isFunction(target[prop])
 		) {
-			methods[prop] =target[prop];
+			methods[prop] = target[prop];
 		}
 	}
 	BaseLogic.mixins.push(target);
@@ -137,4 +151,4 @@ BaseLogic.mixin(listMixin);
 BaseLogic.mixin(httpMixin);
 BaseLogic.mixin(exceptionMixin);
 
-export default  BaseLogic;
+export default BaseLogic;

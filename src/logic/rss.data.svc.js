@@ -3,10 +3,10 @@ import   BaseLogic from '../common/logic';
 class rssDataLogic extends BaseLogic {
   constructor() {
     super({
-      uri: 'rss',
-      listUri: 'rss/list',
-      enablePaging: true,
-      enableSearch: true,
+      uri: 'api/rss',
+      listUri: 'api/rss/list',
+      enablePaging: false,
+      enableSearch: false,
       pageSize: 10
     });
   }
