@@ -4,9 +4,19 @@
 		</el-table-column>
 		<el-table-column prop="author" label="作者" width="220">
 		</el-table-column>
-		<el-table-column prop="title" label="标题" width="320">
+		<el-table-column prop="title" label="标题" width="520">
 		</el-table-column>
 		<el-table-column prop="pubDate" label="发布日期" show-overflow-tooltip>
 		</el-table-column>
+		<el-table-column label="操作">
+			<template scope="scope">
+        <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+      </template>
+		</el-table-column>
 	</el-table>
+	<div class="block fr" v-if="list.length">
+		<el-pagination layout="prev, pager, next" :total="50">
+		</el-pagination>
+	</div>
 </div>

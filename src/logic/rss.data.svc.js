@@ -5,7 +5,7 @@ class rssDataLogic extends BaseLogic {
     super({
       uri: 'api/rss',
       listUri: 'api/rss/list',
-      enablePaging: false,
+      enablePaging: true,
       enableSearch: false,
       pageSize: 10
     });

@@ -169,6 +169,11 @@ export async function loadData() {
 		}
 	}
 
+	if(this.enablePaging){
+		options.pageNum = options.pageNum||1;
+		options.pageSize = options.pageSize||15;
+	}
+
 	var uri = this.listUri;
 	var searchOpion = {
 		url: uri
