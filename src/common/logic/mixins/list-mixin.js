@@ -100,7 +100,7 @@ export function resetSearchOptions() {
 
 	if (this.enablePaging) {
 		_.extend(this.searchOptions, {
-			pageNum: 1,
+			pageNum: 0,
 			pageSize: this.pageSize,
 			totalItems: 0,
 			advanced: {},
@@ -170,8 +170,8 @@ export async function loadData() {
 	}
 
 	if(this.enablePaging){
-		options.pageNum = options.pageNum||1;
-		options.pageSize = options.pageSize||15;
+		options.pageNum = this.currentPage||0;
+		options.pageSize = this.pageSize||15;
 	}
 
 	var uri = this.listUri;
@@ -203,11 +203,11 @@ export async function loadData() {
 		if (this.enablePaging && data) {
 			this.dataList = data.list;
 			this.totalItems = data.totalItems;
-			this.pageNum = options.pageNum;
+			this.currentPage = options.pageNum;
 			this.selectedItems.length = 0;
 		} else {
 			this.totalItems = 0;
-			this.currentPage = 1;
+			this.currentPage = 0;
 		}
 
 		if (!this.enablePaging) {

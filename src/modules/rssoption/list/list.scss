@@ -1,0 +1,13 @@
+@import "src/style/mixin";
+.crm-rssoption-list {
+	.toolbar {
+        padding: 0 0 15px 0;
+        text-align: right;
+    }
+    
+    .avatar {
+		width: 55px;
+		height: 55px;
+		display: block;
+	}
+}

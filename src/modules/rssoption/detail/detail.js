@@ -1,6 +1,6 @@
 import template from './detail.html';
-require('@/modules/rss/detail/detail.scss')
-import service from '@/modules/rss/data.service.js';
+import service from '@/modules/rssoption/data.service.js';
+require('@/modules/rssoption/detail/detail.scss')
 import '@/components/bo-editor/component.js';
 import {
 	Loading
@@ -11,17 +11,16 @@ export default {
 	template: template,
 	data: function() {
 		return {
-
+			dialogImageUrl: '',
 			data: {
 				name: '',
-				title: '',
 				icon: '',
-				isPush: false,
-				pushDate: new Date(),
-				content: '',
+				title: '',
+				link: '',
 				remark: '',
-				pubDate: new Date(),
-				author: '',
+				filters: [],
+				appendText: '',
+				prependText: '',
 				created: new Date(),
 				updated: new Date()
 			},
@@ -41,16 +40,12 @@ export default {
 		};
 	},
 	methods: {
-		handleImgUploaded(file) {
-			this.data.icon = file.url;
-		},
 		submitForm(formName) {
 			this.$refs[formName].validate(async(valid) => {
 				if (valid) {
 					let loadingInstance = Loading.service({
 						text: '正在保存中'
 					});
-
 					let data = await service.saveCreate(this.data);
 					if (data.error) {
 						this.$notify.error({
@@ -71,16 +66,19 @@ export default {
 		resetForm(formName) {
 			this.$refs[formName].resetFields();
 		},
+		handleImgUploaded(file) {
+			this.data.icon = file.url;
+		},
 		goBack() {
-			this.$router.back();
+			this.$router.push({
+				name: 'crm.rssoption.list'
+			})
 		}
 	},
 	async mounted() {
-		let loadingInstance = Loading.service({
-			text: '正在加载'
-		});
-		let data = await service.loadItem(this.$route.params.id);
-		loadingInstance.close();
-		this.data = data;
+		if (this.$route.params.id) {
+			let data = await service.loadItem(this.$route.params.id);
+			this.data = data;
+		}
 	}
 };

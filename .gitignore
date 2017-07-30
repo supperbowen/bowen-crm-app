@@ -6,3 +6,12 @@ yarn-error.log*
 test/unit/coverage
 test/e2e/reports
 selenium-debug.log
+/dist/static/css/app.ac9643d2ee8bcc04bd4fee13bd20e99b.css
+/dist/static/css/app.ac9643d2ee8bcc04bd4fee13bd20e99b.css.map
+/dist/static/js/app.04a1efe6ee80e76bc865.js
+/dist/static/js/app.04a1efe6ee80e76bc865.js.map
+/dist/static/js/manifest.326a02a6cc281b529658.js
+/dist/static/js/manifest.326a02a6cc281b529658.js.map
+/dist/static/js/vendor.2d380f3d2f887d29a52e.js
+/dist/static/js/vendor.2d380f3d2f887d29a52e.js.map
+/dist

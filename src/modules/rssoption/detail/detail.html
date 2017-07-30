@@ -1,4 +1,4 @@
-<div class="crm-rss-detail">
+<div class="crm-rssoption-detail">
 	<el-form :model="data" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
 		<el-tabs type="border-card">
@@ -17,37 +17,40 @@
 							<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>
 					</el-form-item>
-
-					<el-form-item label="是否推送" required>
-						<el-form-item prop="pubDate">
-							<el-switch on-text="" off-text="" v-model="data.isPush"></el-switch>
-						</el-form-item>
-					</el-form-item>
-					<el-form-item label="推送日期" required>
-						<el-form-item prop="pubDate">
-							<el-date-picker type="date" placeholder="发布时间" v-model="data.pushDate" style="width: 100%;"></el-date-picker>
+					<el-form-item label="rss地址" required>
+						<el-form-item prop="link">
+							<el-input v-model="data.link"></el-input>
 						</el-form-item>
 					</el-form-item>
 					<el-form-item>
 						<el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
-						<el-button @click="resetForm()">重置</el-button>
+						<el-button @click="resetForm('ruleForm')">重置</el-button>
 						<el-button @click="goBack()">返回</el-button>
 					</el-form-item>
 				</div>
 			</el-tab-pane>
 			<el-tab-pane label="内容管理">
 				<div class="form form-content">
-					<el-form-item label="描述" prop="author">
+					<el-form-item label="描述" prop="remark">
 						<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 4}" placeholder="请输入内容" v-model="data.remark">
 						</el-input>
 					</el-form-item>
 
-					<el-form-item label="详情" prop="content">
+					<!-- <el-form-item label="过滤器" prop="filters">
 						<bo-editor v-model="data.content"></bo-editor>
+					</el-form-item> -->
+
+					<el-form-item label="前置文本" prop="appendText">
+						<bo-editor v-model="data.appendText"></bo-editor>
 					</el-form-item>
+
+					<el-form-item label="后置文本" prop="prependText">
+						<bo-editor v-model="data.prependText"></bo-editor>
+					</el-form-item>
+
 					<el-form-item>
 						<el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
-						<el-button @click="resetForm()">重置</el-button>
+						<el-button @click="resetForm('ruleForm')">重置</el-button>
 						<el-button @click="goBack()">返回</el-button>
 					</el-form-item>
 				</div>
@@ -78,11 +81,12 @@
 
 					<el-form-item>
 						<el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
-						<el-button @click="resetForm()">重置</el-button>
+						<el-button @click="resetForm('ruleForm')">重置</el-button>
 						<el-button @click="goBack()">返回</el-button>
 					</el-form-item>
 				</div>
 			</el-tab-pane>
 		</el-tabs>
 	</el-form>
+
 </div>

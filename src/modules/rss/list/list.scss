@@ -1,1 +1,9 @@
 @import "src/style/mixin";
+
+.crm-rss-list {
+	.avatar {
+		width: 55px;
+		height: 55px;
+		display: block;
+	}
+}

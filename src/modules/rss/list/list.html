@@ -1,22 +1,35 @@
-<div class="crm-user-list">
+<div class="crm-rss-list">
 	<el-table ref="multipleTable" :data="list" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
 		<el-table-column type="selection" width="55">
 		</el-table-column>
+		<el-table-column prop="icon" label="icon" width="100">
+			<template scope="scope">
+				<img :src="scope.row.icon" class="avatar">
+			</template>
+		</el-table-column>
+		<el-table-column prop="title" label="标题" width="520" show-overflow-tooltip>
+		</el-table-column>
+
+		<el-table-column prop="isPush" label="推送" width="80">
+			<template scope="scope">
+				{{scope.row.isPush?'是':''}}
+			</template>
+		</el-table-column>
+
+		<el-table-column prop="pushDate" label="推送日期" :formatter="formateDate">
+			
+		</el-table-column>
 		<el-table-column prop="author" label="作者" width="220">
-		</el-table-column>
-		<el-table-column prop="title" label="标题" width="520">
-		</el-table-column>
-		<el-table-column prop="pubDate" label="发布日期" show-overflow-tooltip>
 		</el-table-column>
 		<el-table-column label="操作">
 			<template scope="scope">
-        <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+        <el-button size="small" @click="editDetail(scope.row._id)">编辑</el-button>
         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
       </template>
 		</el-table-column>
 	</el-table>
 	<div class="block fr" v-if="list.length">
-		<el-pagination layout="prev, pager, next" :total="50">
+		<el-pagination layout="prev, pager, next" :total="searchOptions.totalItems" :page-size="searchOptions.pageSize" :current-page="searchOptions.currentPage"  @current-change="pageChanged">
 		</el-pagination>
 	</div>
 </div>

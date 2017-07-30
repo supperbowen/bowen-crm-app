@@ -1,0 +1,31 @@
+<div class="crm-rssoption-list">
+	<div class="toolbar">
+		<el-button type="primary" icon="edit" @click="createNew()">新建</el-button>
+	</div>
+	<el-table ref="multipleTable" :data="list" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+		<el-table-column type="selection" width="55">
+		</el-table-column>
+		<el-table-column prop="icon" label="icon" width="100">
+			<template scope="scope">
+				<img :src="scope.row.icon" class="avatar">
+			</template>
+		</el-table-column>
+		<el-table-column prop="name" label="名称" width="200">
+		</el-table-column>
+		<el-table-column prop="title" label="标题" width="320">
+		</el-table-column>
+		<el-table-column prop="link" label="链接" width="320">
+		</el-table-column>
+		<el-table-column label="操作">
+			<template scope="scope">
+				<el-button size="small" @click="editDetail(scope.row._id)">编辑</el-button>
+				<el-button size="small" type="danger" @click="syncArticles(scope.row)">同步文章</el-button>
+				<el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+      		</template>
+		</el-table-column>
+	</el-table>
+	<!-- <div class="block fr" v-if="list.length">
+		<el-pagination layout="prev, pager, next" :total="50">
+		</el-pagination>
+	</div> -->
+</div>

@@ -34,11 +34,12 @@
       return {
         msg: 'Bowen Crm',
         navs: [
-          {route: '/hello', title: '欢迎'},
-          {route: '/user', title: '员工信息'},
-          {route: '/customer', title: '客户信息'},
-          {route: '/activity', title: '客户活动'},
-          {route: '/quotation', title: '意向订单'},
+        //   {route: '/hello', title: '欢迎'},
+        //   {route: '/user', title: '员工信息'},
+          {route: '/rss', title: '文章订阅'},
+          {route: '/rssoption', title: '订阅设置'},
+        //   {route: '/activity', title: '客户活动'},
+        //   {route: '/quotation', title: '意向订单'},
           {route: '/about', title: '关于'}
         ]
       }

@@ -52,11 +52,11 @@ class BaseLogic {
 			set: x => local.selectedItems = x
 		});
 		mkProp(this, 'primaryKey', () => (options.primaryKey || globals.sysPrimaryKey));
-		mkProp(this, 'searchOptions',{
+		mkProp(this, 'searchOptions', {
 			get: () => local.searchOptions,
 			set: x => local.searchOptions = x
 		});
-		mkProp(this, 'currentSearchOptions',{
+		mkProp(this, 'currentSearchOptions', {
 			get: () => local.currentSearchOptions,
 			set: x => local.currentSearchOptions = x
 		});
@@ -87,8 +87,8 @@ class BaseLogic {
 	callHook(name, ...args) {
 		var hookMethod = ensure.ensureMethod(this[name]);
 		hookMethod.bind(this);
-		hookMethod(...args);
-		this.callMixinHook(name, ...args);
+		hookMethod.call(this, ...args);
+		this.callMixinHook.call(this, name, ...args);
 		this.emit(name, ...args);
 	}
 

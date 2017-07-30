@@ -1,17 +1,17 @@
 <template>
   <div class="about">
 
-    <!--<el-steps :space="100" direction="vertical" :active="1">
+    <el-steps :space="100" direction="vertical" :active="1">
       <el-step title="采用技术 vue.js, .netcore, mongodb"></el-step>
       <el-step title="github: https://github.com/supperbowen"></el-step>
       <el-step title="blog: www.liangcanl.com"></el-step>
       <el-step title="QQ：452562076 (梁灿伦)"></el-step>
-    </el-steps>-->
+    </el-steps>
 
-    <div class="block">
+    <!-- <div class="block">
       <span class="demonstration">采用技术</span>
       <div>vue.js, .netcore, mongodb</div>
-    </div>
+    </div> -->
   </div>
 </template>
 
