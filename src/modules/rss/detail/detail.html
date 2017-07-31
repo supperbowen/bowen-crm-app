@@ -1,8 +1,9 @@
 <div class="crm-rss-detail">
-	<el-form :model="data" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
-		<el-tabs type="border-card">
-			<el-tab-pane label="基本信息">
+
+	<el-tabs type="border-card">
+		<el-tab-pane label="基本信息">
+			<el-form :model="data" :rules="rules" ref="ruleForm1" label-width="100px" class="demo-ruleForm">
 				<div class="form form-basic">
 					<el-form-item label="名称" prop="name">
 						<el-input v-model="data.name"></el-input>
@@ -18,6 +19,11 @@
 						</el-upload>
 					</el-form-item>
 
+					<el-form-item label="描述" prop="author">
+						<el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入内容" v-model="data.remark">
+						</el-input>
+					</el-form-item>
+
 					<el-form-item label="是否推送" required>
 						<el-form-item prop="pubDate">
 							<el-switch on-text="" off-text="" v-model="data.isPush"></el-switch>
@@ -29,30 +35,31 @@
 						</el-form-item>
 					</el-form-item>
 					<el-form-item>
-						<el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
+						<el-button type="primary" @click="submitForm('ruleForm1')">保存</el-button>
 						<el-button @click="resetForm()">重置</el-button>
 						<el-button @click="goBack()">返回</el-button>
 					</el-form-item>
 				</div>
-			</el-tab-pane>
-			<el-tab-pane label="内容管理">
+			</el-form>
+		</el-tab-pane>
+		<el-tab-pane label="内容管理">
+			<el-form :model="data" :rules="rules" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
 				<div class="form form-content">
-					<el-form-item label="描述" prop="author">
-						<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 4}" placeholder="请输入内容" v-model="data.remark">
-						</el-input>
-					</el-form-item>
+
 
 					<el-form-item label="详情" prop="content">
-						<bo-editor v-model="data.content"></bo-editor>
+						<bo-editor width="900" height="500" v-model="data.content"></bo-editor>
 					</el-form-item>
 					<el-form-item>
-						<el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
+						<el-button type="primary" @click="submitForm('ruleForm1')">保存</el-button>
 						<el-button @click="resetForm()">重置</el-button>
 						<el-button @click="goBack()">返回</el-button>
 					</el-form-item>
 				</div>
-			</el-tab-pane>
-			<el-tab-pane label="系统信息">
+			</el-form>
+		</el-tab-pane>
+		<el-tab-pane label="系统信息">
+			<el-form :model="data" :rules="rules" ref="ruleForm3" label-width="100px" class="demo-ruleForm">
 				<div class="form form-others">
 
 					<el-form-item label="发布日期" required>
@@ -77,12 +84,13 @@
 					</el-form-item>
 
 					<el-form-item>
-						<el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
+						<el-button type="primary" @click="submitForm('ruleForm1')">保存</el-button>
 						<el-button @click="resetForm()">重置</el-button>
 						<el-button @click="goBack()">返回</el-button>
 					</el-form-item>
 				</div>
-			</el-tab-pane>
-		</el-tabs>
-	</el-form>
+			</el-form>
+		</el-tab-pane>
+	</el-tabs>
+
 </div>
