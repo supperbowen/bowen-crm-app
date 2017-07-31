@@ -17,6 +17,7 @@ export default {
 				title: '',
 				icon: '',
 				isPush: false,
+				ctg:'article',
 				pushDate: new Date(),
 				content: '',
 				remark: '',
@@ -25,6 +26,13 @@ export default {
 				created: new Date(),
 				updated: new Date()
 			},
+			ctgs: [{
+				label: '文章',
+				value: 'article'
+			}, {
+				label: '关于',
+				value: 'about'
+			}],
 			rules: {
 				name: [{
 						required: true,

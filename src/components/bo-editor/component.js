@@ -45,7 +45,7 @@ Vue.component('bo-editor', {
 	},
 	watch: {
 		value(newVal, oldVal) {
-			if (!oldVal) {
+			if (!oldVal && this.ue) {
 				this.ue.setContent(this.value || '', false);
 			}
 		}
