@@ -47,6 +47,11 @@ export default {
 				}
 			})
 		},
+		createNew() {
+			this.$router.push({
+				name: 'crm.rss.create'
+			})
+		},
 		async pageChanged(pageNum) {
 			let loadingInstance = Loading.service({
 				text: '正在加载中'

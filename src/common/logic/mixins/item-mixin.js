@@ -7,7 +7,8 @@ import {
 	omitAttr,
 	hook,
 	method,
-	mkProp
+	mkProp,
+	noop
 } from '../utils';
 // import globals from 'src/globals';
 
@@ -25,6 +26,7 @@ export function initMixin(local, options) {
 	mkProp(this, 'deleteUri', () => options.deleteUri || options.uri);
 	mkProp(this, 'loadUri', () => options.loadUri || options.uri);
 	mkProp(this, 'copyUri', () => options.copyUri || options.uri);
+	mkProp(this, 'data', () => options.data);
 }
 //endregion
 
@@ -72,7 +74,7 @@ export function getCurrentItem() {
  * hook  afterReset
  */
 export function resetCurrentItem() {
-	var defaultVal = this.data() || {};
+	var defaultVal = (this.data && this.data()) || {};
 	_.extend(this.currentItem, defaultVal);
 	this.callHook(hooks.AFTER_RESET, this.currentItem);
 }
@@ -81,10 +83,19 @@ export function resetCurrentItem() {
  * 创建新的对象，初始化由
  * @returns {*}
  */
-export function createNew() {
-	var defaultVal = this.data() || {};
+export async function createNew(defaultVal) {
+	defaultVal = defaultVal || this.data || {};
 	defaultVal.$$new = true;
-	this.callHook(hooks.AFTER_CREATE, defaultVal);
+	let res = await this.httpPost(this.createUri, defaultVal);
+	if (res.status === 200) {
+		this.callHook(hooks.AFTER_CREATE, res.data);
+	} else if (res.status === 201) {
+		this.callHook(hooks.EXCEPTION, id, res.data);
+		this.throwException(res.data, hooks.AFTER_ITEM_LOADED, true);
+	} else {
+		this.callHook(hooks.HTTP_EXCEPTION, id, res.data);
+		this.throwException(res.data, hooks.AFTER_ITEM_LOADED, true);
+	}
 	return defaultVal;
 }
 
@@ -116,7 +127,7 @@ export function loadItem(id) {
 			this.throwException(res.data, hooks.AFTER_ITEM_LOADED, true);
 		} else {
 			//系统异常
-			this.callHook(hooks.EXCEPTION, id, res.data);
+			this.callHook(hooks.HTTP_EXCEPTION, id, res.data);
 			this.throwException(res.data, hooks.AFTER_ITEM_LOADED, true);
 		}
 	}, (ex) => {
@@ -133,7 +144,7 @@ export function loadItem(id) {
 export function saveCreate(item) {
 	item = item || this.currentItem;
 	var options = {
-		url: this.createUri,
+		url: this.updateUri,
 		data: item,
 		method: 'post'
 	};
@@ -148,12 +159,14 @@ export function saveCreate(item) {
 			//操作成功，调用成功钩子
 			this.callHook(hooks.AFTER_SAVED, res.data, true);
 			return res.data;
-		} else {
+		} else if (res.status === 201) {
 			//操作失败，抛出异常
 			this.callHook(hooks.EXCEPTION, item, res.data);
 			return {
 				error: res.data
 			};
+		} else {
+			this.callHook(hooks.HTTP_EXCEPTION, item, res.data);
 		}
 	}, (ex) => {
 		this.throwException(ex, hooks.AFTER_SAVED, true);
@@ -169,7 +182,7 @@ export function updateItem(item) {
 	item = item || this.currentItem;
 	var options = {
 		method: 'put',
-		url: this.createUri,
+		url: this.updateUri,
 		data: item
 	};
 	//调用保存前的钩子

@@ -7,6 +7,16 @@ import hooks from './hooks';
 import omitAttr from './omit-attr';
 import isFunction from './is-function';
 
+function noop() {}
+
 export {
-    keyFilter,mixin,mkProp,tree,ensure,hooks,omitAttr,isFunction
+	keyFilter,
+	mixin,
+	mkProp,
+	tree,
+	ensure,
+	hooks,
+	omitAttr,
+	isFunction,
+	noop
 }

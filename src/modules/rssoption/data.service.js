@@ -5,7 +5,8 @@ class rssDataLogic extends BaseLogic {
 		super({
 			uri: 'api/rssoption',
 			listUri: 'api/rssoption/list',
-			createUri: 'api/rssoption/save',
+			updateUri: 'api/rssoption/save',
+			createUri: 'api/rssoption/create',
 			enablePaging: true,
 			enableSearch: false,
 			pageSize: 20

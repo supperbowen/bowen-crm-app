@@ -77,8 +77,9 @@ export default {
 	},
 	async mounted() {
 		if (this.$route.params.id) {
-			let data = await service.loadItem(this.$route.params.id);
-			this.data = data;
+			this.data = await service.loadItem(this.$route.params.id);
+		} else {
+			this.data = await service.createNew(this.data);
 		}
 	}
 };

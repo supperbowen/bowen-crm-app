@@ -17,7 +17,7 @@ export default {
 				title: '',
 				icon: '',
 				isPush: false,
-				ctg:'article',
+				ctg: 'article',
 				pushDate: new Date(),
 				content: '',
 				remark: '',
@@ -87,7 +87,12 @@ export default {
 		let loadingInstance = Loading.service({
 			text: '正在加载'
 		});
-		let data = await service.loadItem(this.$route.params.id);
+		let data = {};
+		if (this.$route.params.id) {
+			data = await service.loadItem(this.$route.params.id);
+		} else {
+			data = await service.createNew(this.data);
+		}
 		loadingInstance.close();
 		this.data = data;
 	}

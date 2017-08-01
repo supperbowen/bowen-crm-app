@@ -169,9 +169,9 @@ export async function loadData() {
 		}
 	}
 
-	if(this.enablePaging){
-		options.pageNum = this.currentPage||0;
-		options.pageSize = this.pageSize||15;
+	if (this.enablePaging) {
+		options.pageNum = this.currentPage || 0;
+		options.pageSize = this.pageSize || 15;
 	}
 
 	var uri = this.listUri;
@@ -219,8 +219,10 @@ export async function loadData() {
 		this.currentItem = this.findItem(this.currentItem);
 		this.setCurrentItem(this.currentItem);
 		return this.dataList;
-	} else {
+	} else if (res.status === 201) {
 		this.throwException(data, hooks.AFTER_LIST_LOADED);
+	} else {
+		this.callHook(hooks.HTTP_EXCEPTION, item, res.data);
 	}
 	return data;
 }

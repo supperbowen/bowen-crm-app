@@ -78,6 +78,11 @@ var rssRoute = {
 			path: 'detail/:id',
 			name: 'crm.rss.detail',
 			component: RssDetail
+		},
+		{
+			path: 'create',
+			name: 'crm.rss.create',
+			component: RssDetail
 		}
 	]
 };

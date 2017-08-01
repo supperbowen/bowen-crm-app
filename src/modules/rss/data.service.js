@@ -5,7 +5,8 @@ class rssDataLogic extends BaseLogic {
 		super({
 			uri: 'api/rss',
 			listUri: 'api/rss/list',
-			createUri: 'api/rss/save',
+			createUri: 'api/rss/create',
+			updateUri: 'api/rss/save',
 			enablePaging: true,
 			enableSearch: false,
 			pageSize: 10
@@ -29,6 +30,12 @@ class rssDataLogic extends BaseLogic {
 		item.pushDate = item.pushDate || new Date();
 		item.icon = item.icon || '';
 		item.ctg = item.ctg || 'article';
+	}
+
+	async afterCreate(item){
+		item.ctg = 'article';
+		item.isPush = false;
+		item.pushDate = new Date();
 	}
 
 }

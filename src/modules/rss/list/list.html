@@ -1,4 +1,7 @@
 <div class="crm-rss-list">
+	<div class="toolbar">
+		<el-button type="primary" icon="edit" @click="createNew()">新建</el-button>
+	</div>
 	<el-table ref="multipleTable" :data="list" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
 		<el-table-column type="selection" width="55">
 		</el-table-column>
