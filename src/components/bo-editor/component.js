@@ -28,7 +28,7 @@ Vue.component('bo-editor', {
 			this.ue.setContent(this.value || '', false);
 		});
 
-		this.ue.addListener('selectionchange', function(editor) {
+		this.ue.addListener('selectionchange', (editor) => {
 			this.updateValue();
 		});
 	},
@@ -37,14 +37,17 @@ Vue.component('bo-editor', {
 		updateValue: function(value) {
 			this.$emit('input', this.ue.getContent());
 		}
+	},
+	updated() {
+		if (this.ue && this.ue.setContent) {
+			this.ue.setContent(this.value || '', false);
+		}
+	},
+	watch: {
+		value(newVal, oldVal) {
+			if (!oldVal && this.ue) {
+				this.ue.setContent(this.value || '', false);
+			}
+		}
 	}
-	// ,
-	// watch: {
-	// 	value(newVal) {
-	// 		this.ue.ready(() => {
-	// 			this.ue.setContent(this.value || '', false);
-	// 		});
-	// 		//this.ue.setContent(newVal || '', false);
-	// 	}
-	// }
 });

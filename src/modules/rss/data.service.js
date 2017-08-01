@@ -28,6 +28,7 @@ class rssDataLogic extends BaseLogic {
 		item.isPush = item.isPush || false;
 		item.pushDate = item.pushDate || new Date();
 		item.icon = item.icon || '';
+		item.ctg = item.ctg || 'article';
 	}
 
 }
