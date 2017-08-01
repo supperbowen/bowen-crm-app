@@ -2,12 +2,12 @@
 	<div class="toolbar">
 		<el-button type="primary" icon="edit" @click="createNew()">新建</el-button>
 	</div>
-	<el-table ref="multipleTable" :data="list" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+	<el-table row-key="_id" ref="multipleTable" :data="list" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
 		<el-table-column type="selection" width="55">
 		</el-table-column>
 		<el-table-column label="icon" width="100">
 			<template scope="scope">
-				<img class="pointer" @click="editDetail(scope.row._id)" :src="scope.row.icon" class="avatar">
+				<img class="pointer avatar" @click="editDetail(scope.row._id)" :src="scope.row.icon" >
 			</template>
 		</el-table-column>
 		<el-table-column label="标题" width="520" show-overflow-tooltip>

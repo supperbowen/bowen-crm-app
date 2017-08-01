@@ -204,7 +204,7 @@ export function updateItem(item) {
 	})
 }
 
-export async function removeItem(id) {
+export async function deleteItem(id) {
 	var options = {
 		method: 'delete',
 		url: this.deleteUri,

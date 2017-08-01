@@ -31,6 +31,18 @@ export default {
 				name: 'crm.rssoption.create'
 			})
 		},
+		async refreshDisplay() {
+			let data = (await service.loadData()) || [];
+			this.list = data;
+		},
+		async removeItem(id) {
+			// let loadingInstance = Loading.service({
+			// 	text: '正在删除'
+			// });
+			var result = await service.deleteItem(id);
+			await this.refreshDisplay();
+			// loadingInstance.close();
+		},
 		editDetail(id) {
 			this.$router.push({
 				name: 'crm.rssoption.detail',
@@ -60,9 +72,10 @@ export default {
 		}
 	},
 	async mounted() {
-		let data = (await service.loadData()) || [];
-		for (let item of data) {
-			this.list.push(item);
-		}
+		let loadingInstance = Loading.service({
+			text: '正在加载中'
+		});
+		await this.refreshDisplay();
+		loadingInstance.close();
 	}
 }
