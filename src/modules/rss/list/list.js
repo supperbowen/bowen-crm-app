@@ -52,6 +52,19 @@ export default {
 				name: 'crm.rss.create'
 			})
 		},
+		async removeItem(id) {
+			let loadingInstance = Loading.service({
+				text: '正在加载中'
+			});
+			var result = await this.service.removeItem(id);
+			let data = await service.loadData();
+			service.currentPage = pageNum;
+			this.list.length = 0;
+			for (let item of data) {
+				this.list.push(item);
+			}
+			loadingInstance.close();
+		},
 		async pageChanged(pageNum) {
 			let loadingInstance = Loading.service({
 				text: '正在加载中'

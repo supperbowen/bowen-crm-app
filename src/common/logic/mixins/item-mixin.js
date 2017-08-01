@@ -189,17 +189,41 @@ export function updateItem(item) {
 	this.callHook(hooks.BEFORE_SAVE, item);
 
 	this.httpCall(options).then((res) => {
-		if (res.isSuccess) {
+		if (res.status === 200) {
 			//调用保存成功后的钩子
 			this.callHook(hooks.AFTER_SAVED, res.data);
-		} else {
+		} else if (res.status === 201) {
 			//保存异常
+			this.callHook(hooks.EXCEPTION, res.data);
 			this.throwException(res.data, hooks.AFTER_SAVED);
 		}
 	}, (ex) => {
 		//http异常
+		this.callHook(hooks.HTTP_EXCEPTION, res);
 		this.throwException(ex, hooks.AFTER_SAVED, true);
 	})
+}
+
+export async function removeItem(id) {
+	var options = {
+		method: 'delete',
+		url: this.deleteUri,
+		params: {
+			id
+		}
+	};
+
+	this.callHook(hooks.BEFORE_DELETE, id);
+
+	var res = await this.httpCall(options);
+	if (res.status === 200) {
+		this.callHook(hooks.AFTER_DELETE, id);
+		return res.data;
+	} else if (res.status === 201) {
+		this.callHook(hooks.EXCEPTION, res.data);
+	} else {
+		this.callHook(hooks.HTTP_EXCEPTION, res);
+	}
 }
 
 
