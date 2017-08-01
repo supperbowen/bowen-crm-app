@@ -35,7 +35,7 @@
 		</el-table-column>
 	</el-table>
 	<div class="block fr" v-if="list.length">
-		<el-pagination layout="prev, pager, next" :total="searchOptions.totalItems" :page-size="searchOptions.pageSize" :current-page="searchOptions.currentPage"  @current-change="pageChanged">
+		<el-pagination layout="prev, pager, next" :total="searchOptions.totalItems" :page-size="searchOptions.pageSize" :current-page="pageNum"  @current-change="pageChanged">
 		</el-pagination>
 	</div>
 </div>

@@ -12,10 +12,10 @@ export default {
 		return {
 			multipleSelection: [],
 			list: [],
-			searchOptions: {
-				currentPage: 0,
-				pageSize: 10,
-				totalItems: 0
+			pageNum: 1,
+			searchOptions:{
+				pageSize:0,
+				totalItems:0
 			}
 		};
 	},
@@ -69,7 +69,7 @@ export default {
 			let loadingInstance = Loading.service({
 				text: '正在加载中'
 			});
-
+			service.searchOptions.currentPage = pageNum - 1;
 			let data = await service.loadData();
 			this.list.length = 0;
 			for (let item of data) {
