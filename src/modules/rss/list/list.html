@@ -2,17 +2,20 @@
 	<el-table ref="multipleTable" :data="list" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
 		<el-table-column type="selection" width="55">
 		</el-table-column>
-		<el-table-column prop="icon" label="icon" width="100">
+		<el-table-column label="icon" width="100">
 			<template scope="scope">
-				<img :src="scope.row.icon" class="avatar">
+				<img class="pointer" @click="editDetail(scope.row._id)" :src="scope.row.icon" class="avatar">
 			</template>
 		</el-table-column>
-		<el-table-column prop="title" label="标题" width="520" show-overflow-tooltip>
+		<el-table-column label="标题" width="520" show-overflow-tooltip>
+			<template scope="scope">
+				<span class="pointer" @click="editDetail(scope.row._id)">{{scope.row.title}}</span>
+			</template>
 		</el-table-column>
 
-		<el-table-column prop="isPush" label="推送" width="80">
+		<el-table-column label="推送" width="80">
 			<template scope="scope">
-				{{scope.row.isPush?'是':''}}
+				<span>{{scope.row.isPush?'是':''}}</span>
 			</template>
 		</el-table-column>
 
