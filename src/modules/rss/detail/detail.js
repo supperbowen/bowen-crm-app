@@ -44,6 +44,23 @@ export default {
 						message: '长度在 3 到 5 个字符',
 						trigger: 'blur'
 					}
+				],
+				title: [{
+						required: true,
+						message: '请输入活动名称',
+						trigger: 'blur'
+					},
+					{
+						max: 200,
+						message: '长度在 3 到 5 个字符',
+						trigger: 'blur'
+					}
+				],
+				ctg: [{
+						required: true,
+						message: '请输入活动名称',
+						trigger: 'blur'
+					}
 				]
 			}
 		};

@@ -22,6 +22,12 @@
 			</template>
 		</el-table-column>
 
+		<el-table-column label="类型" width="80">
+			<template scope="scope">
+				<span>{{scope.row.ctg === 'about'?'关于':'文章'}}</span>
+			</template>
+		</el-table-column>
+
 		<el-table-column prop="pushDate" label="推送日期" :formatter="formateDate">
 			
 		</el-table-column>

@@ -1,18 +1,23 @@
 <div class="crm-rss-detail">
 
+	<div class="toolbar">
+		<el-button type="primary" @click="submitForm('ruleForm1')">保存</el-button>
+						<el-button @click="resetForm()">重置</el-button>
+						<el-button @click="goBack()">返回</el-button>
+	</div>
 
 	<el-tabs type="border-card">
 		<el-tab-pane label="基本信息">
 			<el-form :model="data" :rules="rules" ref="ruleForm1" label-width="100px" class="demo-ruleForm">
 				<div class="form form-basic">
-					<el-form-item label="名称" prop="name">
+					<el-form-item label="名称" prop="name" required>
 						<el-input v-model="data.name"></el-input>
 					</el-form-item>
-					<el-form-item label="标题" prop="title">
+					<el-form-item label="标题" prop="title" required>
 						<el-input v-model="data.title"></el-input>
 					</el-form-item>
 
-					<el-form-item label="图标" required>
+					<el-form-item label="图标">
 						<el-upload class="avatar-uploader" action="https://crm.liangcanl.cn/ue/ueditor/ue/api?action=uploadimage" :show-file-list="false" :on-success="handleImgUploaded">
 							<img v-if="data.icon" :src="data.icon" class="avatar">
 							<i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -31,44 +36,36 @@
 						</el-input>
 					</el-form-item>
 
-					<el-form-item label="是否推送" required>
+					<el-form-item label="是否推送" >
 						<el-radio class="radio" v-model="data.isPush" :label="true">是</el-radio>
 						<el-radio class="radio" v-model="data.isPush" :label="false">否</el-radio>
 					</el-form-item>
-					<el-form-item label="推送日期" required>
+					<el-form-item label="推送日期" >
 						<el-form-item prop="pubDate">
 							<el-date-picker type="date" placeholder="发布时间" v-model="data.pushDate" style="width: 100%;"></el-date-picker>
 						</el-form-item>
 					</el-form-item>
-					<el-form-item>
-						<el-button type="primary" @click="submitForm('ruleForm1')">保存</el-button>
-						<el-button @click="resetForm()">重置</el-button>
-						<el-button @click="goBack()">返回</el-button>
-					</el-form-item>
+					
 				</div>
+			<bo-editor class="content" width="375" height="500" v-model="data.content"></bo-editor>				
+				
 			</el-form>
 		</el-tab-pane>
-		<el-tab-pane label="内容管理">
+		<!-- <el-tab-pane label="内容管理">
 			<el-form :model="data" :rules="rules" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
 				<div class="form form-content">
-
-
 					<el-form-item label="详情" prop="content">
-						<bo-editor width="900" height="500" v-model="data.content"></bo-editor>
+						
 					</el-form-item>
-					<el-form-item>
-						<el-button type="primary" @click="submitForm('ruleForm1')">保存</el-button>
-						<el-button @click="resetForm()">重置</el-button>
-						<el-button @click="goBack()">返回</el-button>
-					</el-form-item>
+					
 				</div>
 			</el-form>
-		</el-tab-pane>
-		<el-tab-pane label="系统信息">
+		</el-tab-pane> -->
+		<el-tab-pane label="其它信息">
 			<el-form :model="data" :rules="rules" ref="ruleForm3" label-width="100px" class="demo-ruleForm">
 				<div class="form form-others">
 
-					<el-form-item label="发布日期" required>
+					<el-form-item label="发布日期">
 						<el-form-item prop="pubDate">
 							<el-date-picker type="date" placeholder="选择日期" v-model="data.pubDate" style="width: 100%;"></el-date-picker>
 						</el-form-item>
@@ -78,22 +75,17 @@
 						<el-input v-model="data.author"></el-input>
 					</el-form-item>
 
-					<el-form-item label="创建日期" required>
+					<el-form-item label="创建日期">
 						<el-form-item prop="pubDate">
 							<el-date-picker type="date" placeholder="选择日期" v-model="data.created" style="width: 100%;"></el-date-picker>
 						</el-form-item>
 					</el-form-item>
-					<el-form-item label="更新日期" required>
+					<el-form-item label="更新日期">
 						<el-form-item prop="pubDate">
 							<el-date-picker type="date" placeholder="选择日期" v-model="data.updated" style="width: 100%;"></el-date-picker>
 						</el-form-item>
 					</el-form-item>
 
-					<el-form-item>
-						<el-button type="primary" @click="submitForm('ruleForm1')">保存</el-button>
-						<el-button @click="resetForm()">重置</el-button>
-						<el-button @click="goBack()">返回</el-button>
-					</el-form-item>
 				</div>
 			</el-form>
 		</el-tab-pane>

@@ -2,7 +2,7 @@
 .crm-rss-detail {
 	.el-form,
 	.form {
-		max-width: 900px;
+		max-width: 600px;
 	}
 
 	.avatar-uploader .el-upload {
@@ -27,5 +27,23 @@
 		width: 150px;
 		height: 150px;
 		display: block;
+	}
+
+	.content {
+		position: absolute;
+		right: 200px;
+		z-index: 999;
+		top: 15px;
+	}
+
+	.toolbar {
+		position: absolute;
+		right: 50px;
+		z-index: 999;
+		top: 63px;
+	}
+
+	.form-basic{
+		min-height:  590px
 	}
 }
