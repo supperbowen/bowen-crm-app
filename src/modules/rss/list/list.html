@@ -2,12 +2,12 @@
 	<div class="toolbar">
 		<el-button type="primary" icon="edit" @click="createNew()">新建</el-button>
 	</div>
-	<el-table ref="multipleTable" :data="list" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+	<el-table row-key="_id" ref="multipleTable" :data="list" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
 		<el-table-column type="selection" width="55">
 		</el-table-column>
 		<el-table-column label="icon" width="100">
 			<template scope="scope">
-				<img class="pointer" @click="editDetail(scope.row._id)" :src="scope.row.icon" class="avatar">
+				<img class="pointer avatar" @click="editDetail(scope.row._id)" :src="scope.row.icon" >
 			</template>
 		</el-table-column>
 		<el-table-column label="标题" width="520" show-overflow-tooltip>
@@ -19,6 +19,12 @@
 		<el-table-column label="推送" width="80">
 			<template scope="scope">
 				<span>{{scope.row.isPush?'是':''}}</span>
+			</template>
+		</el-table-column>
+
+		<el-table-column label="类型" width="80">
+			<template scope="scope">
+				<span>{{scope.row.ctg === 'about'?'关于':'文章'}}</span>
 			</template>
 		</el-table-column>
 
@@ -35,7 +41,7 @@
 		</el-table-column>
 	</el-table>
 	<div class="block fr" v-if="list.length">
-		<el-pagination layout="prev, pager, next" :total="searchOptions.totalItems" :page-size="searchOptions.pageSize" :current-page="searchOptions.currentPage"  @current-change="pageChanged">
+		<el-pagination layout="prev, pager, next" :total="searchOptions.totalItems" :page-size="searchOptions.pageSize" :current-page="pageNum"  @current-change="pageChanged">
 		</el-pagination>
 	</div>
 </div>

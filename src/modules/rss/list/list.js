@@ -12,10 +12,10 @@ export default {
 		return {
 			multipleSelection: [],
 			list: [],
-			searchOptions: {
-				currentPage: 0,
-				pageSize: 10,
-				totalItems: 0
+			pageNum: 1,
+			searchOptions:{
+				pageSize:0,
+				totalItems:0
 			}
 		};
 	},
@@ -52,26 +52,25 @@ export default {
 				name: 'crm.rss.create'
 			})
 		},
-		async removeItem(id) {
-			let loadingInstance = Loading.service({
-				text: '正在加载中'
-			});
-			var result = await this.service.removeItem(id);
+		async refreshDisplay() {
 			let data = await service.loadData();
-			service.currentPage = pageNum;
-			this.list.length = 0;
-			for (let item of data) {
-				this.list.push(item);
-			}
-			loadingInstance.close();
+			this.searchOptions.totalItems = service.searchOptions.totalItems;
+			this.list = data;
+		},
+		async removeItem(id) {
+			// let loadingInstance = Loading.service({
+			// 	text: '正在删除'
+			// });
+			var result = await service.deleteItem(id);
+			await this.refreshDisplay();
+			// loadingInstance.close();
 		},
 		async pageChanged(pageNum) {
 			let loadingInstance = Loading.service({
 				text: '正在加载中'
 			});
-
+			service.searchOptions.currentPage = pageNum - 1;
 			let data = await service.loadData();
-			service.currentPage = pageNum;
 			this.list.length = 0;
 			for (let item of data) {
 				this.list.push(item);
@@ -81,10 +80,10 @@ export default {
 	},
 	async mounted() {
 		this.searchOptions.pageSize = service.pageSize;
-		let data = await service.loadData();
-		this.searchOptions.totalItems = service.searchOptions.totalItems;
-		for (let item of data) {
-			this.list.push(item);
-		}
+		// let loadingInstance = Loading.service({
+		// 	text: '正在加载中'
+		// });
+		await this.refreshDisplay();
+		// loadingInstance.close();
 	}
 }
