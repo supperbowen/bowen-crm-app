@@ -29,7 +29,7 @@
 
 <script>
 import MainNav from "./children/MainNav";
-import loadingBar from 'vue2-loading-bar';
+// import loadingBar from 'vue2-loading-bar';
 export default {
     components: { MainNav },
     name: 'desktop',
