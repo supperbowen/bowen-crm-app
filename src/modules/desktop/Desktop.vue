@@ -8,8 +8,8 @@
             </a>
     
         </div>
-        <loading-bar id="loading-bar-id">
-        </loading-bar>
+        <!-- <loading-bar id="loading-bar-id">
+        </loading-bar> -->
     
         <div class="main-nav">
             <main-nav :navs="navs"></main-nav>

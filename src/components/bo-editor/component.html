@@ -1,5 +1,12 @@
 <div class="editor-container">
-	<script id="editor" type="text/plain"></script>
+	<script id="editor" type="text/plain"></script>	
 
-	
+	<el-dialog title="插入源码" :visible.sync="codeDialogVisible" size="tiny"  :modal="!codeDialogVisible">
+		 <el-input type="textarea" :rows="10" placeholder="请输入内容" v-model="code">
+		</el-input> 
+		<el-button @click="codeDialogVisible = false">取 消</el-button>
+		<el-button type="primary" @click="insertCode(code)">确 定</el-button>
+		</span>
+	</el-dialog>
+
 </div>
