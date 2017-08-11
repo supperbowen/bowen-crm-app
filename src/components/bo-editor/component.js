@@ -60,5 +60,12 @@ Vue.component('bo-editor', {
 			this.ue.execCommand( 'inserthtml', code );
 			this.codeDialogVisible = false;
 		}
+	},
+	watch:{
+		value:(nVal, oVal)=>{
+			if(!oVal && this.isLoaded){
+				this.ue.setContent(this.value || '', false);
+			}
+		}
 	}
 });
